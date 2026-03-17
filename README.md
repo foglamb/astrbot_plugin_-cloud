@@ -1,14 +1,43 @@
-# astrbot-plugin-helloworld
+# 移动云盘代挂及登录插件
 
-AstrBot 插件模板 / A template plugin for AstrBot plugin feature
+本插件为 [AstrBot](https://github.com/Soulter/AstrBot) 提供移动云盘代挂、CK登录、短信验证码登录及账号信息查询功能。
 
-> [!NOTE]
-> This repo is just a template of [AstrBot](https://github.com/AstrBotDevs/AstrBot) Plugin.
-> 
-> [AstrBot](https://github.com/AstrBotDevs/AstrBot) is an agentic assistant for both personal and group conversations. It can be deployed across dozens of mainstream instant messaging platforms, including QQ, Telegram, Feishu, DingTalk, Slack, LINE, Discord, Matrix, etc. In addition, it provides a reliable and extensible conversational AI infrastructure for individuals, developers, and teams. Whether you need a personal AI companion, an intelligent customer support agent, an automation assistant, or an enterprise knowledge base, AstrBot enables you to quickly build AI applications directly within your existing messaging workflows.
+## 📌 功能概览
 
-# Supports
+- **使用教程**：发送 `云盘代挂` 获取详细操作指引。
+- **CK 登录**：通过手动抓包获取 `authorization` 后提交登录。
+- **短信验证码登录**：分两步完成（先获取验证码，再验证登录）。
+- **账号查询**：查看自己名下绑定的云盘账号信息（云朵数量、签到状态等）。
 
-- [AstrBot Repo](https://github.com/AstrBotDevs/AstrBot)
-- [AstrBot Plugin Development Docs (Chinese)](https://docs.astrbot.app/dev/star/plugin-new.html)
-- [AstrBot Plugin Development Docs (English)](https://docs.astrbot.app/en/dev/star/plugin-new.html)
+## 📝 指令说明
+
+| 指令 | 说明 |
+|------|------|
+| `云盘代挂` | 显示完整使用教程 |
+| `云盘登录1#手机号#auth` | 使用 CK（authorization）方式登录云盘 |
+| `云盘登录2#手机号` | 向指定手机号发送短信验证码 |
+| `云盘登录2#手机号#验证码` | 使用收到的验证码完成登录 |
+| `云盘查询` | 查询当前 QQ 绑定的所有云盘账号信息 |
+
+## ⚙️ 配置项
+
+插件依赖以下配置项，请在 AstrBot 的插件配置文件中设置：
+
+### `cloud_api_url`
+- **类型**：字符串  
+- **默认值**：`http://localhost:5000`  
+- **说明**：云盘服务的 API 基础地址。
+
+### `admin_account`
+- **类型**：对象  
+- **子字段**：
+  - `username`：管理员用户名（默认：`admin`）
+  - `password`：管理员密码（默认：`admin`）
+
+> 💡 **注意**：管理员账号需具备 dashboard 和账号管理权限，用于代理用户提交登录请求。
+
+## 🛠 使用要求
+
+- 机器人运行环境必须能访问配置的 `cloud_api_url`。
+- 用户通过 QQ 发送指令，系统自动以 **QQ 号作为备注（remark）** 绑定账号，确保查询时能准确匹配。
+- 所有敏感信息（如手机号）在查询结果中会自动脱敏（例如：138***1234）。

@@ -1,0 +1,24 @@
+{
+  "cloud_api_url": {
+    "description": "云盘API地址",
+    "type": "string",
+    "default": "http://localhost:5000",
+    "hint": "云盘服务的API基础地址"
+  },
+  "admin_account": {
+    "description": "管理员账号",
+    "type": "object",
+    "items": {
+      "username": {
+        "description": "用户名",
+        "type": "string",
+        "default": "admin"
+      },
+      "password": {
+        "description": "密码",
+        "type": "string",
+        "default": "admin"
+      }
+    }
+  }
+}
