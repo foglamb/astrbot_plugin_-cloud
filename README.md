@@ -1,6 +1,6 @@
 # 移动云盘代挂及登录插件
 
-本插件为 [AstrBot](https://github.com/Soulter/AstrBot) 提供移动云盘代挂、CK登录、短信验证码登录及账号信息查询功能。
+本插件为 [AstrBot](https://github.com/Soulter/AstrBot](https://github.com/AstrBotDevs/AstrBot) 提供移动云盘代挂、CK登录、短信验证码登录及账号信息查询功能。
 
 ## 📌 功能概览
 
