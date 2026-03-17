@@ -15,8 +15,11 @@ class CloudSubmitPlugin(Star):
         self.admin_token: Optional[str] = None
         self.token_expires_at: int = 0
         
-        # 从配置中读取API地址
-        self.base_url = self.config.get("cloud_api_url", "http://47.99.39.140:5000")
+        # 从配置中读取API地址，不允许默认值包含真实IP
+        self.base_url = self.config.get("cloud_api_url")
+        if not self.base_url:
+            raise ValueError("配置缺失：请在插件配置中设置 'cloud_api_url' 字段，例如 http://your-server:port")
+
         self.login_url = f"{self.base_url}/api/api/auth/login"
         # 新增CK登录API地址
         self.ck_login_url = f"{self.base_url}/api/api/accounts"
@@ -29,10 +32,14 @@ class CloudSubmitPlugin(Star):
         # 新增dashboard API地址
         self.dashboard_url = f"{self.base_url}/api/api/admin/dashboard"
         
-        # 从配置中读取管理员账号信息
-        admin_account = self.config.get("admin_account", {})
-        self.username = admin_account.get("username", "1931690001")
-        self.password = admin_account.get("password", "abc221300")
+        # 从配置中读取管理员账号信息，不允许默认账号密码
+        admin_account = self.config.get("admin_account")
+        if not admin_account:
+            raise ValueError("配置缺失：请在插件配置中设置 'admin_account' 字段，包含 username 和 password")
+        self.username = admin_account.get("username")
+        self.password = admin_account.get("password")
+        if not self.username or not self.password:
+            raise ValueError("配置错误：'admin_account' 必须包含非空的 'username' 和 'password'")
         
         # 新增task_id缓存字典
         self.phone_task_map = {}
