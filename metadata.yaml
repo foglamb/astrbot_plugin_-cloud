@@ -1,6 +1,6 @@
-name: cloud_submit
-display_name: 移动云盘代挂与CK登录提交
-desc: 支持移动云盘代挂任务提交、CK登录（云盘登录1#手机号#auth）和短信验证码登录（云盘登录2#手机号 → 云盘登录2#手机号#验证码）的插件。
+name: astrbot_plugin_-cloud
+display_name: 移动云盘提交
+desc: 提供移动云盘代挂、CK登录、短信验证码登录及账号信息查询功能。
 version: v1.0.0
-author: OneTHos
-repo: https://github.com/yourname/cloud_submit
+author: foglamb
+repo: https://github.com/foglamb/astrbot_plugin_-cloud
